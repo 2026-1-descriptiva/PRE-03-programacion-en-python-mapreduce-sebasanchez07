@@ -10,10 +10,13 @@ import homework.word_count as wc
 def test_01():
     """Test Word Count"""
 
-    wc.copy_raw_files_to_input_folder(n=1000)
-    wc.run_job(
-        "files/input",
-        "files/output",
+    wc.generate_file_copies(n=1000)
+    wc.delete_folder("files/output/")
+    wc.hadoop(
+        input_folder="files/input/",
+        output_folder="files/output/",
+        mapper_fn=wc.mapper,
+        reducer_fn=wc.reducer,
     )
 
     #
@@ -38,8 +41,8 @@ def test_01():
             key, value = line.strip().split("\t")
             result[key] = int(value)
 
-    assert result["analytics"] == 5000
-    assert result["business"] == 7000
-    assert result["by"] == 3000
-    assert result["algorithms"] == 2000
-    assert result["analysis"] == 4000
+    assert result["analytics"] == 25000
+    assert result["business"] == 35000
+    assert result["by"] == 15000
+    assert result["algorithms"] == 10000
+    assert result["analysis"] == 20000
