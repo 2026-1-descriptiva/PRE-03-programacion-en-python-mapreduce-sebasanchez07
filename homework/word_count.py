@@ -35,6 +35,10 @@ def delete_folder(folder):
 
 def generate_file_copies(n):
 
+    # 🔥 Crear carpeta input si no existe
+    if not os.path.exists("files/input/"):
+        os.makedirs("files/input/")
+
     for file in glob.glob("files/raw/*"):
         with open(file, "r", encoding="utf-8") as f:
             text = f.read()
@@ -45,6 +49,7 @@ def generate_file_copies(n):
                 raw_filename_with_extension
             )[0]
             new_filename = f"{raw_filename_without_extension}_{i}.txt"
+
             with open(f"files/input/{new_filename}", "w", encoding="utf-8") as f2:
                 f2.write(text)
 
