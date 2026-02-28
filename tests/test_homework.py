@@ -45,4 +45,5 @@ def test_01():
     assert result["business"] == 35000
     assert result["by"] == 15000
     assert result["algorithms"] == 10000
-    assert result["analysis"] == 20000
+    assert result["analysis"] == 20000 
+    
